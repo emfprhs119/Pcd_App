@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE); // remove titlebar
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);	// fixed orientation
 
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		super.onCreate(savedInstanceState);
@@ -104,10 +104,6 @@ public class MainActivity extends Activity {
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     // 버튼에서 손을 떼었을 때
                 }
-                // 이벤트 처리를 여기서 완료했을 때 
-                // 다른곳에 이벤트를 넘기지 않도록
-                // 리턴값을 true 로 준다
-                // 리턴값이 있음
                 return true;
             }
         });
@@ -117,7 +113,6 @@ public class MainActivity extends Activity {
 				tv.setText("Circle        ");
 				pcdAngle = false;
 			}
-
 		});
 		angleButton.setOnClickListener(new Button.OnClickListener() {
 			@Override
@@ -125,9 +120,7 @@ public class MainActivity extends Activity {
 				tv.setText("Angle        ");
 				pcdAngle = true;
 			}
-
 		});
-
 	}
 
 	class Click implements Button.OnClickListener {
@@ -140,6 +133,10 @@ public class MainActivity extends Activity {
 			try {
 				pcd = Float.parseFloat(pcdT.getText().toString());
 				num = Integer.parseInt(numT.getText().toString());
+				if (num==0){
+					Toast.makeText(getApplicationContext(), "1 이상의 숫자를 입력해 주세요.", Toast.LENGTH_LONG).show();
+					return;
+				}
 			} catch (NumberFormatException e) {
 				Toast.makeText(getApplicationContext(), "숫자를 입력해주세요.", Toast.LENGTH_LONG).show();
 				return;
