@@ -14,3 +14,7 @@ Angle
 -------------
 input diameter and angle  
 output one point angle calc parallel size
+
+Screenshot
+-------------
+![capture](/capture.png)

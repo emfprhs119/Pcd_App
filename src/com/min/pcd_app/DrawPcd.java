@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
+import android.util.Log;
 import android.view.View;
 
 class Point {
@@ -146,9 +147,10 @@ public class DrawPcd extends View {
 	}
 
 	void pushSet(Point p) {
-		double height = (p.height * rad);
-		double width = (p.width * rad);
+		double height = Double.parseDouble(String.format("%.6f",(p.height * rad)));
+		double width = Double.parseDouble(String.format("%.6f",(p.width * rad)));
 		if (height <= 0) {
+			;
 			xSetUp.add(Math.abs(width));
 			ySetUp.add(Math.abs(height));
 		} else {
@@ -170,7 +172,6 @@ public class DrawPcd extends View {
 			double widthf = Math.cos(2 * Math.PI / num * (i + (rotation ? 0.5f : 0)) + 3 * Math.PI / 2);
 			pointArr[i] = new Point(heightf, widthf);
 		}
-
 	}
 
 	public void angleCalc(double pcd, int deg) {
